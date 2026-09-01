@@ -1,0 +1,18 @@
+{
+  "name": "Prompt Academy",
+  "short_name": "Prompt Academy",
+  "description": "Duolingo-inspired offline-first app for learning AI image prompting.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#04050a",
+  "theme_color": "#04050a",
+  "icons": [
+    {
+      "src": "./pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

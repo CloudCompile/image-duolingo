@@ -40,6 +40,7 @@ const tabs: { id: Tab; label: string; icon: ComponentType<{ className?: string }
 ];
 
 const activityTypes = ["lesson", "quiz", "challenge", "experiment", "unit", "daily"] as const;
+const PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const applyTheme = (theme: "dark" | "light" | "system") => {
   const root = document.documentElement;
@@ -85,6 +86,15 @@ const App = () => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setData(initial);
     applyTheme(initial.settings.theme);
+  }, []);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "production" || typeof window === "undefined") return;
+    if (!("serviceWorker" in navigator)) return;
+
+    const swUrl = `${PUBLIC_BASE_PATH}/sw.js`;
+    const scope = PUBLIC_BASE_PATH ? `${PUBLIC_BASE_PATH}/` : "/";
+    navigator.serviceWorker.register(swUrl, { scope }).catch(() => undefined);
   }, []);
 
   useEffect(() => {
